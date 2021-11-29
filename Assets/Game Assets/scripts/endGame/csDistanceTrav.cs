@@ -1,13 +1,13 @@
 using UnityEngine;
 using System.Collections;
 
-public class csDistanceTrav : MonoBehaviour {
-	private csRangerWars grGlobals;
+public class DistanceTrav : MonoBehaviour {
+	private RangerWars grGlobals;
 	
 	// Use this for initializatio
 	void Awake()
 	{
-		grGlobals = GameObject.Find("MainGame").GetComponent<csRangerWars>();
+		grGlobals = GameObject.Find("MainGame").GetComponent<RangerWars>();
 	}
 	
 	// Use this for initialization

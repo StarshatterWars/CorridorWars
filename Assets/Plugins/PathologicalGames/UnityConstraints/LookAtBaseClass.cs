@@ -1,5 +1,5 @@
 /// <Licensing>
-/// © 2011 (Copyright) Path-o-logical Games, LLC
+/// ï¿½ 2011 (Copyright) Path-o-logical Games, LLC
 /// If purchased from the Unity Asset Store, the following license is superseded 
 /// by the Asset Store license.
 /// Licensed under the Unity Asset Package Product License (the "License");
@@ -36,7 +36,7 @@ namespace PathologicalGames
         /// </summary>
         protected override void NoTargetDefault()
         {
-            this.xform.rotation = Quaternion.identity;
+            this.transform.rotation = Quaternion.identity;
         }
 
 
@@ -52,7 +52,7 @@ namespace PathologicalGames
 
                 // Set the internal target to 1 unit away in the direction of the pointAxis
                 // this.target will be the internalTarget due to SetByScript
-                target.position = (this.xform.rotation * this.pointAxis) + this.xform.position;
+                target.position = (this.transform.rotation * this.pointAxis) + this.transform.position;
 
                 return this._internalTarget;
             }

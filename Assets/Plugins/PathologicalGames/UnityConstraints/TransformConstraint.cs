@@ -1,5 +1,5 @@
 /// <Licensing>
-/// © 2011 (Copyright) Path-o-logical Games, LLC
+/// ï¿½ 2011 (Copyright) Path-o-logical Games, LLC
 /// If purchased from the Unity Asset Store, the following license is superseded 
 /// by the Asset Store license.
 /// Licensed under the Unity Asset Package Product License (the "License");
@@ -68,7 +68,7 @@ namespace PathologicalGames
         {
             base.Awake();
 
-            this.parXform = this.xform.parent;
+            this.parXform = this.transform.parent;
         }
 
 
@@ -84,20 +84,20 @@ namespace PathologicalGames
 
             if (this.constrainRotation)
             {
-                this.xform.rotation = this.target.rotation;
-                UnityConstraints.MaskOutputRotations(this.xform, this.output);
+                this.transform.rotation = this.target.rotation;
+                UnityConstraints.MaskOutputRotations(this.transform, this.output);
             }
 
             if (this.constrainPosition)
             {
-                this.pos = this.xform.position;
+                this.pos = this.transform.position;
 
                 // Output only if wanted
                 if (this.outputPosX) this.pos.x = this.target.position.x;
                 if (this.outputPosY) this.pos.y = this.target.position.y;
                 if (this.outputPosZ) this.pos.z = this.target.position.z;
 
-                this.xform.position = pos;
+                this.transform.position = pos;
             }
         }
 
@@ -109,13 +109,13 @@ namespace PathologicalGames
         protected override void NoTargetDefault()
         {
             if (this.constrainScale)
-                this.xform.localScale = Vector3.one;
+                this.transform.localScale = Vector3.one;
 
             if (this.constrainRotation)
-                this.xform.rotation = Quaternion.identity;
+                this.transform.rotation = Quaternion.identity;
 
             if (this.constrainPosition)
-                this.xform.position = Vector3.zero;
+                this.transform.position = Vector3.zero;
         }
 
         /// <summary>
@@ -131,7 +131,7 @@ namespace PathologicalGames
         public virtual void SetWorldScale(Transform sourceXform)
         {
             // Set the scale now that both Transforms are in the same space
-            this.xform.localScale = this.GetTargetLocalScale(sourceXform);
+            this.transform.localScale = this.GetTargetLocalScale(sourceXform);
         }
 
         /// <summary>

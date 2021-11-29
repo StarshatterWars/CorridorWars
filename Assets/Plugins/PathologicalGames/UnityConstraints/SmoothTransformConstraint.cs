@@ -1,5 +1,5 @@
 /// <Licensing>
-/// © 2011 (Copyright) Path-o-logical Games, LLC
+/// ï¿½ 2011 (Copyright) Path-o-logical Games, LLC
 /// If purchased from the Unity Asset Store, the following license is superseded 
 /// by the Asset Store license.
 /// Licensed under the Unity Asset Package Product License (the "License");
@@ -52,7 +52,7 @@ namespace PathologicalGames
         protected override void NoTargetDefault()
         {
             if (this.constrainScale)
-                this.xform.localScale = Vector3.one;
+                this.transform.localScale = Vector3.one;
 
             this.OutputRotationTowards(Quaternion.identity);
             this.OutputPositionTowards(this.target.position);
@@ -71,13 +71,13 @@ namespace PathologicalGames
             switch (this.position_interpolation)
             {
                 case INTERP_OPTIONS_POS.Linear:
-                    this.pos = Vector3.Lerp(this.xform.position, destPos, this.positionSpeed);
+                    this.pos = Vector3.Lerp(this.transform.position, destPos, this.positionSpeed);
                     break;
 
                 case INTERP_OPTIONS_POS.Damp:
                     this.pos = Vector3.SmoothDamp
                     (
-                        this.xform.position, 
+                        this.transform.position, 
                         destPos, 
                         ref this.curDampVelocity,
                         this.positionSpeed
@@ -87,7 +87,7 @@ namespace PathologicalGames
                 case INTERP_OPTIONS_POS.DampLimited:
                     this.pos = Vector3.SmoothDamp
                     (
-                        this.xform.position, 
+                        this.transform.position, 
                         destPos, 
                         ref this.curDampVelocity, 
                         this.positionSpeed,
@@ -97,11 +97,11 @@ namespace PathologicalGames
             }
 
             // Output only if wanted - faster to invert and set back to current.
-            if (!this.outputPosX) this.pos.x = this.xform.position.x;
-            if (!this.outputPosY) this.pos.y = this.xform.position.y;
-            if (!this.outputPosZ) this.pos.z = this.xform.position.z;
+            if (!this.outputPosX) this.pos.x = this.transform.position.x;
+            if (!this.outputPosY) this.pos.y = this.transform.position.y;
+            if (!this.outputPosZ) this.pos.z = this.transform.position.z;
 
-            this.xform.position = pos;
+            this.transform.position = pos;
         }
 
         /// <summary>
@@ -116,13 +116,13 @@ namespace PathologicalGames
 
             UnityConstraints.InterpolateRotationTo
             (
-                this.xform,
+                this.transform,
                 destRot,
                 this.interpolation,
                 this.rotationSpeed
             );
 
-            UnityConstraints.MaskOutputRotations(this.xform, this.output);
+            UnityConstraints.MaskOutputRotations(this.transform, this.output);
         }
 
 
@@ -133,9 +133,9 @@ namespace PathologicalGames
         public override void SetWorldScale(Transform sourceXform)
         {
             // Set the scale now that both Transforms are in the same space
-            this.xform.localScale = Vector3.Lerp
+            this.transform.localScale = Vector3.Lerp
             (
-                this.xform.localScale,
+                this.transform.localScale,
                 this.GetTargetLocalScale(sourceXform),
                 this.scaleSpeed
             );

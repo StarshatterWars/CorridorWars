@@ -1,5 +1,5 @@
 /// <Licensing>
-/// © 2011 (Copyright) Path-o-logical Games, LLC
+/// ï¿½ 2011 (Copyright) Path-o-logical Games, LLC
 /// If purchased from the Unity Asset Store, the following license is superseded 
 /// by the Asset Store license.
 /// Licensed under the Unity Asset Package Product License (the "License");
@@ -54,9 +54,9 @@ namespace PathologicalGames
 
                 // Make a sibling so this object and the reference exist in the same space
                 //   and reset
-                this._internalTarget.position = this.xform.position;
-                this._internalTarget.rotation = this.xform.rotation;
-                this._internalTarget.localScale = this.xform.localScale;
+                this._internalTarget.position = this.transform.position;
+                this._internalTarget.rotation = this.transform.rotation;
+                this._internalTarget.localScale = this.transform.localScale;
 
                 return this._internalTarget;
             }
@@ -183,7 +183,7 @@ namespace PathologicalGames
                         case UnityConstraints.NO_TARGET_OPTIONS.Error:
                             var msg = string.Format("No target provided. \n{0} on {1}",
                                                     this.GetType().Name,
-                                                    this.xform.name);
+                                                    this.transform.name);
 
                             Debug.LogError(msg);  // Spams like Unity
                             yield return null;

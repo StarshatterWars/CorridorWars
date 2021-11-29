@@ -1,5 +1,5 @@
 /// <Licensing>
-/// © 2011 (Copyright) Path-o-logical Games, LLC
+/// ï¿½ 2011 (Copyright) Path-o-logical Games, LLC
 /// If purchased from the Unity Asset Store, the following license is superseded 
 /// by the Asset Store license.
 /// Licensed under the Unity Asset Package Product License (the "License");
@@ -58,7 +58,7 @@ namespace PathologicalGames
 
             // This is based on the Unity wiki script which keeps this look-at
             //   vector parrallel with the camera, rather than right at the center
-            Vector3 lookPos = this.xform.position + this.target.rotation * Vector3.back;
+            Vector3 lookPos = this.transform.position + this.target.rotation * Vector3.back;
             Vector3 upVect = Vector3.up;
 
             // If the billboarding will happen vertically as well, then the upvector needs
@@ -68,12 +68,12 @@ namespace PathologicalGames
             if (this.vertical)
                 upVect = this.target.rotation * Vector3.up;
             else
-                lookPos.y = this.xform.position.y;
+                lookPos.y = this.transform.position.y;
 
             // Get the final direction to look for processing with user input axis settings
-            Vector3 lookVect = lookPos - this.xform.position;
+            Vector3 lookVect = lookPos - this.transform.position;
             var lookRot = Quaternion.LookRotation(lookVect, upVect);
-            this.xform.rotation = this.GetUserLookRotation(lookRot);
+            this.transform.rotation = this.GetUserLookRotation(lookRot);
 
         }
 

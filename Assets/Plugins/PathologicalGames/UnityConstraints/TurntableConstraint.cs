@@ -1,5 +1,5 @@
 /// <Licensing>
-/// © 2011 (Copyright) Path-o-logical Games, LLC
+/// ï¿½ 2011 (Copyright) Path-o-logical Games, LLC
 /// If purchased from the Unity Asset Store, the following license is superseded 
 /// by the Asset Store license.
 /// Licensed under the Unity Asset Package Product License (the "License");
@@ -41,7 +41,7 @@ namespace PathologicalGames
                 // It isn't helpful to have this run in the editor.
                 //   This if statement won't compile with the game
                 if (Application.isPlaying && this.randomStart)
-                    this.xform.Rotate(0, Random.value * 360, 0);
+                    this.transform.Rotate(0, Random.value * 360, 0);
 #if UNITY_EDITOR
             }
 #endif
@@ -61,7 +61,7 @@ namespace PathologicalGames
             {
 #endif
                 // Add a rotation == this.speed per frame
-                this.xform.Rotate(0, this.speed, 0);
+                this.transform.Rotate(0, this.speed, 0);
 #if UNITY_EDITOR
             }
 #endif

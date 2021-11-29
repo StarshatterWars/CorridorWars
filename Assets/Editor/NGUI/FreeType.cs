@@ -1,7 +1,7 @@
-//----------------------------------------------
+//-------------------------------------------------
 //            NGUI: Next-Gen UI kit
-// Copyright © 2011-2015 Tasharen Entertainment
-//----------------------------------------------
+// Copyright © 2011-2020 Tasharen Entertainment Inc
+//-------------------------------------------------
 
 using System;
 using System.IO;
@@ -122,7 +122,7 @@ static public class FreeType
 	public const int FT_LOAD_SBITS_ONLY = 16384;
 	public const int FT_LOAD_VERTICAL_LAYOUT = 16;
 
-	public enum FT_Glyph_Format
+	[DoNotObfuscateNGUI] public enum FT_Glyph_Format
 	{
 		FT_GLYPH_FORMAT_NONE,
 		FT_GLYPH_FORMAT_COMPOSITE = 1668246896,
@@ -131,7 +131,7 @@ static public class FreeType
 		FT_GLYPH_FORMAT_PLOTTER = 1886154612
 	}
 
-	public enum FT_Render_Mode
+	[DoNotObfuscateNGUI] public enum FT_Render_Mode
 	{
 		FT_RENDER_MODE_NORMAL,
 		FT_RENDER_MODE_LIGHT,
@@ -282,11 +282,6 @@ static public class FreeType
 		public int y;
 	}
 	
-#if UNITY_4_3 || UNITY_4_5 || UNITY_4_6
-	const string libName = "FreeType";
-#else
-	const string libName = "FreeType64";
-#endif
 	static bool mFound = false;
 
 	/// <summary>
@@ -311,7 +306,7 @@ static public class FreeType
 				}
 				else
 				{
-					string filename = libName + ".dylib";
+					string filename = "FreeType.dylib";
 
 					if (File.Exists("/usr/local/lib/" + filename))
 					{
@@ -353,63 +348,63 @@ static public class FreeType
 	/// Initialize the FreeType library. Must be called first before doing anything else.
 	/// </summary>
 
-	[DllImport(libName, CallingConvention = CallingConvention.Cdecl)]
+	[DllImport("FreeType", CallingConvention = CallingConvention.Cdecl)]
 	static extern int FT_Init_FreeType (out IntPtr library);
 
 	/// <summary>
 	/// Return the glyph index of a given character code. This function uses a charmap object to do the mapping.
 	/// </summary>
 
-	[DllImport(libName, CallingConvention = CallingConvention.Cdecl)]
+	[DllImport("FreeType", CallingConvention = CallingConvention.Cdecl)]
 	static extern uint FT_Get_Char_Index (IntPtr face, uint charcode);
 
 	/// <summary>
 	/// This function calls FT_Open_Face to open a font by its pathname.
 	/// </summary>
 
-	[DllImport(libName, CallingConvention = CallingConvention.Cdecl)]
+	[DllImport("FreeType", CallingConvention = CallingConvention.Cdecl)]
 	static extern int FT_New_Face (IntPtr library, string filepathname, int face_index, out IntPtr face);
 
 	/// <summary>
 	/// Discard a given face object, as well as all of its child slots and sizes.
 	/// </summary>
 
-	[DllImport(libName, CallingConvention = CallingConvention.Cdecl)]
+	[DllImport("FreeType", CallingConvention = CallingConvention.Cdecl)]
 	static extern int FT_Done_Face (IntPtr face);
 
 	/// <summary>
 	/// A function used to load a single glyph into the glyph slot of a face object.
 	/// </summary>
 
-	[DllImport(libName, CallingConvention = CallingConvention.Cdecl)]
+	[DllImport("FreeType", CallingConvention = CallingConvention.Cdecl)]
 	static extern int FT_Load_Glyph (IntPtr face, uint glyph_index, int load_flags);
 
 	/// <summary>
 	/// Convert a given glyph image to a bitmap.
 	/// </summary>
 
-	[DllImport(libName, CallingConvention = CallingConvention.Cdecl)]
+	[DllImport("FreeType", CallingConvention = CallingConvention.Cdecl)]
 	static extern int FT_Render_Glyph (ref FT_GlyphSlotRec slot, FT_Render_Mode render_mode);
 
 	/// <summary>
 	/// Retrieve kerning information for the specified pair of characters.
 	/// </summary>
 
-	[DllImport(libName, CallingConvention = CallingConvention.Cdecl)]
+	[DllImport("FreeType", CallingConvention = CallingConvention.Cdecl)]
 	static extern int FT_Get_Kerning (IntPtr face, uint left, uint right, uint kern_mode, out FT_Vector kerning);
 
 	/// <summary>
 	/// This function calls FT_Request_Size to request the nominal size (in pixels).
 	/// </summary>
 
-	[DllImport(libName, CallingConvention = CallingConvention.Cdecl)]
+	[DllImport("FreeType", CallingConvention = CallingConvention.Cdecl)]
 	static extern int FT_Set_Pixel_Sizes (IntPtr face, uint pixel_width, uint pixel_height);
 
 	/// <summary>
 	/// Notify FreeType that you are done using the library. Should be called at the end.
 	/// </summary>
 
-	[DllImport(libName, CallingConvention = CallingConvention.Cdecl)]
+	[DllImport("FreeType", CallingConvention = CallingConvention.Cdecl)]
 	static extern int FT_Done_FreeType (IntPtr library);
 
 	/// <summary>
@@ -471,6 +466,7 @@ static public class FreeType
 
 	static public bool CreateFont (Font ttf, int size, int faceIndex, bool kerning, string characters, int padding, out BMFont font, out Texture2D tex)
 	{
+		padding = Mathf.Clamp(padding, 0, 16);
 		font = null;
 		tex = null;
 
@@ -555,20 +551,23 @@ static public class FreeType
 				FT_GlyphSlotRec glyph = (FT_GlyphSlotRec)Marshal.PtrToStructure(faceRec.glyph, typeof(FT_GlyphSlotRec));
 				FT_Render_Glyph(ref glyph, FT_Render_Mode.FT_RENDER_MODE_NORMAL);
 
-				if (glyph.bitmap.width > 0 && glyph.bitmap.rows > 0)
+				var w = glyph.bitmap.width;
+				var h = glyph.bitmap.rows;
+
+				if (w > 0 && h > 0)
 				{
-					byte[] buffer = new byte[glyph.bitmap.width * glyph.bitmap.rows];
+					var buffer = new byte[w * h];
 					Marshal.Copy(glyph.bitmap.buffer, buffer, 0, buffer.Length);
 
-					Texture2D texture = new Texture2D(glyph.bitmap.width, glyph.bitmap.rows, UnityEngine.TextureFormat.ARGB32, false);
-					Color32[] colors = new Color32[buffer.Length];
+					var texture = new Texture2D(w,  h, UnityEngine.TextureFormat.ARGB32, false);
+					var colors = new Color32[w * h];
 
-					for (int i = 0, y = 0; y < glyph.bitmap.rows; ++y)
+					for (int i = 0, y = 0; y < h; ++y)
 					{
-						for (int x = 0; x < glyph.bitmap.width; ++x)
+						for (int x = 0; x < w; ++x)
 						{
 							white.a = buffer[i++];
-							colors[x + glyph.bitmap.width * (glyph.bitmap.rows - y - 1)] = white;
+							colors[x + w * (h - y - 1)] = white;
 						}
 					}
 
@@ -579,7 +578,7 @@ static public class FreeType
 					entries.Add(ch);
 
 					// Record the metrics
-					BMGlyph bmg = font.GetGlyph(ch, true);
+					var bmg = font.GetGlyph(ch, true);
 					bmg.offsetX = (glyph.metrics.horiBearingX >> 6);
 					bmg.offsetY = -(glyph.metrics.horiBearingY >> 6);
 					bmg.advance = (glyph.metrics.horiAdvance >> 6);
@@ -605,18 +604,20 @@ static public class FreeType
 
 			// Create a packed texture with all the characters
 			tex = new Texture2D(32, 32, TextureFormat.ARGB32, false);
-			Rect[] rects = tex.PackTextures(textures.ToArray(), padding);
+			var rects = tex.PackTextures(textures.ToArray(), 1 + padding);
 
 			// Make the RGB channel pure white
-			Color32[] cols = tex.GetPixels32();
+			var cols = tex.GetPixels32();
+
 			for (int i = 0, imax = cols.Length; i < imax; ++i)
 			{
-				Color32 c = cols[i];
+				var c = cols[i];
 				c.r = 255;
 				c.g = 255;
 				c.b = 255;
 				cols[i] = c;
 			}
+
 			tex.SetPixels32(cols);
 			tex.Apply();
 
@@ -632,10 +633,10 @@ static public class FreeType
 				// Destroy the texture now that it's a part of an atlas
 				UnityEngine.Object.DestroyImmediate(textures[i]);
 				textures[i] = null;
-				Rect rect = rects[i];
+				var rect = rects[i];
 
 				// Set the texture coordinates
-				BMGlyph glyph = font.GetGlyph(entries[i], true);
+				var glyph = font.GetGlyph(entries[i], true);
 				glyph.x = Mathf.RoundToInt(rect.x * font.texWidth);
 				glyph.y = Mathf.RoundToInt(rect.y * font.texHeight);
 				glyph.width = Mathf.RoundToInt(rect.width * font.texWidth);
@@ -650,12 +651,17 @@ static public class FreeType
 
 			int baseline = size + min;
 			baseline += ((max - min - size) >> 1);
+			var p2 = padding * 2;
 
 			// Offset all glyphs so that they are not using the baseline
 			for (int i = 0, imax = entries.Count; i < imax; ++i)
 			{
-				BMGlyph glyph = font.GetGlyph(entries[i], true);
-				glyph.offsetY += baseline;
+				var glyph = font.GetGlyph(entries[i], true);
+				glyph.offsetY += baseline - padding;
+				glyph.offsetX -= padding;
+				glyph.y -= p2;
+				glyph.width += p2;
+				glyph.height += p2;
 			}
 		}
 		

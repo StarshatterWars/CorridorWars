@@ -3,12 +3,12 @@ using System.Collections;
 
 public class csPartsCollEG : MonoBehaviour {
 	
-	private csRangerWars grGlobals;
+	private RangerWars grGlobals;
 	// Use this for initialization
 	
 	void Awake()
 	{
-		grGlobals = GameObject.Find("MainGame").GetComponent<csRangerWars>();
+		grGlobals = GameObject.Find("MainGame").GetComponent<RangerWars>();
 	}
 	
 	// Use this for initialization

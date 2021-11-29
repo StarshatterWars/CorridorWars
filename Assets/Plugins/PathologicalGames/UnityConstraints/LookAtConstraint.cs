@@ -1,5 +1,5 @@
 /// <Licensing>
-/// © 2011 (Copyright) Path-o-logical Games, LLC
+/// ï¿½ 2011 (Copyright) Path-o-logical Games, LLC
 /// If purchased from the Unity Asset Store, the following license is superseded 
 /// by the Asset Store license.
 /// Licensed under the Unity Asset Package Product License (the "License");
@@ -29,7 +29,7 @@ namespace PathologicalGames
         // Get the lookVector
         protected virtual Vector3 lookVect
         {
-            get { return this.target.position - this.xform.position; }
+			get { return this.target.position - this.transform.position; }
         }
 
         // Get the upvector. Factors in any options.
@@ -41,7 +41,7 @@ namespace PathologicalGames
                 if (this.upTarget == null)
                     upVect = Vector3.up;
                 else
-                    upVect = this.upTarget.position - this.xform.position;
+                    upVect = this.upTarget.position - this.transform.position;
 
                 return upVect;
             }
@@ -56,7 +56,7 @@ namespace PathologicalGames
             // Note: Do not run base.OnConstraintUpdate. It is not implimented
 
             var lookRot = Quaternion.LookRotation(this.lookVect, this.upVect);
-            this.xform.rotation = this.GetUserLookRotation(lookRot);
+            this.transform.rotation = this.GetUserLookRotation(lookRot);
         }
     }
 }

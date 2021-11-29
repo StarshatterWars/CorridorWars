@@ -20,17 +20,15 @@ namespace PathologicalGames
     [AddComponentMenu("")] // Hides from Unity4 Inspector menu
     public class ConstraintFrameworkBaseClass : MonoBehaviour
     {
-        // Cache...
-        [HideInInspector]
-        public Transform xform;   // Made public to share the cache when storing references
-
         /// <summary>
         /// Cache as much as possible before starting the co-routine
         /// </summary>
         protected virtual void Awake()
         {
-            this.xform = this.transform;
-        }
+			// Pre-Unity5 this stored a cache to this.transform, which is no longer necessary
+			//	This Awake was kept to avoid changing sub-class accessors. No harm keeping this 
+			//	in case it is needed in the future.
+		}
 
         /// <summary>
         /// Activate the constraint again if this object was disabled then enabled.
