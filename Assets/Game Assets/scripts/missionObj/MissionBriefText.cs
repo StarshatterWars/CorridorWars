@@ -4,19 +4,19 @@ using UnityEngine;
 /// </summary>
 
 [RequireComponent(typeof(UILabel))]
-public class csMissionBriefText : MonoBehaviour
+public class MissionBriefText : MonoBehaviour
 {
 		public int charsPerSecond = 40;
 
 		private UILabel mLabel = null;
 		int mOffset = 0;
 		float mNextChar = 0f;
-		private csMainMenu grGlobals;
+		private MainMenu grGlobals;
 	
 		// Use this for initializatio
 		void Awake ()
 		{
-				grGlobals = GameObject.Find ("MenuManager").GetComponent<csMainMenu> ();
+				grGlobals = GameObject.Find ("MenuManager").GetComponent<MainMenu> ();
 		}
 	
 		void Start ()

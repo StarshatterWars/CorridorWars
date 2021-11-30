@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class csCreateMainMenu : MonoBehaviour {
+public class CreateMainMenu : MonoBehaviour {
 	public GameObject TitleGUIPrefab;
 	private GameObject TitleGUI;
 	

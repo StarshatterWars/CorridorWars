@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class csDontDestroy : MonoBehaviour {
+public class DontDestroy : MonoBehaviour {
 
 	void Awake()
 	{

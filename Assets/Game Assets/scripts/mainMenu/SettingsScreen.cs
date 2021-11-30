@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using Prime31;
 
-public class csSettingsScreen : MonoBehaviour {
+public class SettingsScreen : MonoBehaviour {
 	
 	public GameObject settingsShipPrefab;
 	private GameObject SettingsShip;
@@ -121,7 +121,7 @@ public class csSettingsScreen : MonoBehaviour {
 	
 	public void UnloadSettingsScreen()
 	{
-		csMainMenu grGlobals = GameObject.Find("MenuManager").GetComponent<csMainMenu>();
+		MainMenu grGlobals = GameObject.Find("MenuManager").GetComponent<MainMenu>();
 		if(GameObject.Find("SettingsScreen")) 
 		{
 			GameObject SScreenGO = GameObject.Find("SettingsScreen");

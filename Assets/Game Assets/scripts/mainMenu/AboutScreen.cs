@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class csAboutScreen : MonoBehaviour {
+public class AboutScreen : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -23,7 +23,7 @@ public class csAboutScreen : MonoBehaviour {
 	
 	public void OnAboutButton()
 	{
-		csMainMenu grGlobals = GameObject.Find("MenuManager").GetComponent<csMainMenu>();
+		MainMenu grGlobals = GameObject.Find("MenuManager").GetComponent<MainMenu>();
 		grGlobals.aboutScreenActivate = true;
 	}
 }

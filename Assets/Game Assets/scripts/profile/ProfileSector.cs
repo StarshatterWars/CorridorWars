@@ -1,13 +1,13 @@
 using UnityEngine;
 using System.Collections;
 
-public class csProfileSector : MonoBehaviour {
-	private csMainMenu grGlobals;
+public class ProfileSector : MonoBehaviour {
+	private MainMenu grGlobals;
 	// Use this for initialization
 	
 	void Awake()
 	{
-		grGlobals = GameObject.Find("MenuManager").GetComponent<csMainMenu>();
+		grGlobals = GameObject.Find("MenuManager").GetComponent<MainMenu>();
 	}
 	
 	// Use this for initialization

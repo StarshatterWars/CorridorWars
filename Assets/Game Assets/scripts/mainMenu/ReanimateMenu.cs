@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class csReanimateMenu : MonoBehaviour {
+public class ReanimateMenu : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -10,7 +10,7 @@ public class csReanimateMenu : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		csMainMenu grGlobals = GameObject.Find("MenuManager").GetComponent<csMainMenu>();
+		MainMenu grGlobals = GameObject.Find("MenuManager").GetComponent<MainMenu>();
 		if(grGlobals.reanimateMenu)
 		{
 			this.gameObject.GetComponent<Animation>()["CustomScreenOpen"].speed = 1.0f;

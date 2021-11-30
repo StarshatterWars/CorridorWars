@@ -1,13 +1,13 @@
 using UnityEngine;
 using System.Collections;
 
-public class csProfileRankBar1 : MonoBehaviour {
-	private csMainMenu grGlobals;
+public class ProfileRankBar1 : MonoBehaviour {
+	private MainMenu grGlobals;
 	// Use this for initialization
 	private string[] rankName = new string[13] { "MSHP", "ENS", "LTJG", " LT", "LCDR", "CDR", "CPT", "CDRE", "RADM", "VADM", "ADM", "SADM", "FADM" };
 	void Awake()
 	{
-		grGlobals = GameObject.Find("MenuManager").GetComponent<csMainMenu>();
+		grGlobals = GameObject.Find("MenuManager").GetComponent<MainMenu>();
 	}
 	
 	// Use this for initialization

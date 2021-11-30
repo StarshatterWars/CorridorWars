@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class csLoadingBar : MonoBehaviour {
+public class LoadingBar : MonoBehaviour {
 
 	void Awake()
 	{

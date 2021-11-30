@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class csProfileButton : MonoBehaviour {
+public class ProfileButton : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -14,7 +14,7 @@ public class csProfileButton : MonoBehaviour {
 	
 	public void OnProfileButton()
 	{
-		csMainMenu grGlobals = GameObject.Find("MenuManager").GetComponent<csMainMenu>();
+		MainMenu grGlobals = GameObject.Find("MenuManager").GetComponent<MainMenu>();
 		grGlobals.profileScreenActivate = true;
 	}
 }

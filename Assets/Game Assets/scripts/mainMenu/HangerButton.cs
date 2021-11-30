@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class csHangerButton : MonoBehaviour {
+public class HangerButton : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -13,7 +13,7 @@ public class csHangerButton : MonoBehaviour {
 	}
 	public void OnHangerButton()
 	{
-		csMainMenu grGlobals = GameObject.Find("MenuManager").GetComponent<csMainMenu>();
+		MainMenu grGlobals = GameObject.Find("MenuManager").GetComponent<MainMenu>();
 		grGlobals.hangerScreenActivate = true;
 	}
 }

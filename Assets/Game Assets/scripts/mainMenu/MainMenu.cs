@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Prime31;
 
-public class csMainMenu : MonoBehaviour {
+public class MainMenu : MonoBehaviour {
 
 	public GameObject shipPrefab;
 	public GameObject planetPrefab;

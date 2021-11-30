@@ -1,13 +1,13 @@
 using UnityEngine;
 using System.Collections;
 
-public class csShipType : MonoBehaviour {
-private csMainMenu grGlobals;
+public class ShipType : MonoBehaviour {
+private MainMenu grGlobals;
 	
 	// Use this for initializatio
 	void Awake()
 	{
-		grGlobals = GameObject.Find("MenuManager").GetComponent<csMainMenu>();
+		grGlobals = GameObject.Find("MenuManager").GetComponent<MainMenu>();
 	}
 	
 	// Use this for initialization

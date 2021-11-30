@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class csSettingsButton : MonoBehaviour {
+public class SettingsButton : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -14,7 +14,7 @@ public class csSettingsButton : MonoBehaviour {
 	
 	public void OnSettingsButton()
 	{
-		csMainMenu grGlobals = GameObject.Find("MenuManager").GetComponent<csMainMenu>();
+		MainMenu grGlobals = GameObject.Find("MenuManager").GetComponent<MainMenu>();
 		grGlobals.settingsScreenActivate = true;
 	}
 }

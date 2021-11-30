@@ -1,13 +1,13 @@
 using UnityEngine;
 using System.Collections;
 
-public class csMissionBriefObj : MonoBehaviour {
-	private csMainMenu grGlobals;
+public class MissionBriefObj : MonoBehaviour {
+	private MainMenu grGlobals;
 	
 	// Use this for initializatio
 	void Awake()
 	{
-		grGlobals = GameObject.Find("MenuManager").GetComponent<csMainMenu>();
+		grGlobals = GameObject.Find("MenuManager").GetComponent<MainMenu>();
 	}
 	
 	// Use this for initialization

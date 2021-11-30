@@ -1,14 +1,14 @@
 using UnityEngine;
 using System.Collections;
 
-public class csProfileRankPic : MonoBehaviour {
-	private csMainMenu grGlobals;
+public class ProfileRankPic : MonoBehaviour {
+	private MainMenu grGlobals;
 	// Use this for initialization
 	private string[] rankPic = new string[13] { "RankMidshipman", "RankEnsign", "RankLtJR", "RankLt", "RankLtCommander", "RankCommander", "RankCaptain", "RankCommodore", "RankViceAdmiral", "RankRearAdmiral", "RankAdmiral", "RankAdmiral", "RankFleetAdmiral" };
 	
 	void Awake()
 	{
-		grGlobals = GameObject.Find("MenuManager").GetComponent<csMainMenu>();
+		grGlobals = GameObject.Find("MenuManager").GetComponent<MainMenu>();
 	}
 	
 	// Use this for initialization

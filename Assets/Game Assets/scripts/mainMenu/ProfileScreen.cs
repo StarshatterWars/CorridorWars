@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Prime31;
 
-public class csProfileScreen : MonoBehaviour {
+public class ProfileScreen : MonoBehaviour {
 	public GameObject[] medalScreen;	
 	public GameObject GameCenterSubPanel;
 	public GameObject profileShipPrefab;

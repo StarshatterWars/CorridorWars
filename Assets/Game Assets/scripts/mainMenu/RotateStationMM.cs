@@ -1,8 +1,8 @@
 using UnityEngine;
 using System.Collections;
 
-public class csRotateStationMM : MonoBehaviour {
-	private csMainMenu grGlobals;
+public class RotateStationMM : MonoBehaviour {
+	private MainMenu grGlobals;
 	public GameObject shipPrefab;
 	private GameObject m_player;
 	private bool m_playerCreated = false;
@@ -12,7 +12,7 @@ public class csRotateStationMM : MonoBehaviour {
 	// Use this for initializatio
 	void Awake()
 	{
-		grGlobals = GameObject.Find("MenuManager").GetComponent<csMainMenu>();
+		grGlobals = GameObject.Find("MenuManager").GetComponent<MainMenu>();
 		m_playerCreated = false;
 		numberFighters = 0;
 	}

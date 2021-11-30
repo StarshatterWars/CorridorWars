@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Prime31;
 
-public class csHangerScreen : MonoBehaviour {
+public class HangerScreen : MonoBehaviour {
 	
 	//Check Internet
 	public bool m_isConnectedtoInternet = false;
@@ -139,7 +139,7 @@ public class csHangerScreen : MonoBehaviour {
 	
 	public void UnloadHangerScreen()
 	{
-		csMainMenu grGlobals = GameObject.Find("MenuManager").GetComponent<csMainMenu>();
+		MainMenu grGlobals = GameObject.Find("MenuManager").GetComponent<MainMenu>();
 		if(GameObject.Find("HangerScreen")) 
 		{
 			GameObject SScreenGO = GameObject.Find("HangerScreen");
