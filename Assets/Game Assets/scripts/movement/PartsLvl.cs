@@ -1,10 +1,13 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PartsLvl : MonoBehaviour {
 	private RangerWars grGlobals;
-	
-	// Use this for initializatio
+
+	public Text txtEnergy;
+
+	// Use this for initialization
 	void Awake()
 	{
 		grGlobals = GameObject.Find("MainGame").GetComponent<RangerWars>();
@@ -18,8 +21,7 @@ public class PartsLvl : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
-		UILabel gameEnergy = this.gameObject.GetComponent<UILabel>();
-		gameEnergy.text = grGlobals.m_partsCollected.ToString();
-		gameEnergy.color = Color.cyan;
+		txtEnergy.text = grGlobals.m_partsCollected.ToString();
+		txtEnergy.color = Color.cyan;
 	}
 }

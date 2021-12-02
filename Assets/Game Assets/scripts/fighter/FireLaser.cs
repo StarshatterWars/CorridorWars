@@ -1,11 +1,11 @@
 using UnityEngine;
 using System.Collections;
 
-public class csFireLaser : MonoBehaviour {
+public class FireLaser : MonoBehaviour {
 	private RangerWars grGlobals;
 	public GameObject laserPrefab;
 	
-	// Use this for initializatio
+	// Use this for initialization
 	void Awake()
 	{
 		grGlobals = GameObject.Find("MainGame").GetComponent<RangerWars>();

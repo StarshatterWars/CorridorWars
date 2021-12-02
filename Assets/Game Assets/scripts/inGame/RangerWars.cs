@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms;
 using System.Text;
 using Prime31;
@@ -150,9 +151,9 @@ public class RangerWars: MonoBehaviour
 		// These are the prefabs used by the system.
 		
 		// Game Center Integration
-		private List<GameCenterLeaderboard> leaderboards;
-		private List<GameCenterAchievementMetadata> achievementMetadata;
-		private List<GameCenterAchievement> achievement;
+		//private List<GameCenterLeaderboard> leaderboards;
+		//private List<GameCenterAchievementMetadata> achievementMetadata;
+		//private List<GameCenterAchievement> achievement;
 	
 		public GameObject m_damagePrefab;
 		public GameObject m_playerPrefab;
@@ -237,16 +238,12 @@ public class RangerWars: MonoBehaviour
 	
 		public GameObject JoystickPrefab;
 		private GameObject Joystick;
-		
-		public GameObject FireButtonPrefab;
-		private GameObject FireButton;
-	
-		public GameObject MissileButtonPrefab;
-		private GameObject MissileButton;
 	
 		public GameObject SpeedControlPrefab;
 		private GameObject SpeedControl;
-	
+
+		public GameObject FireButton;
+		public GameObject MissileButton; 
 		//InGameGUI
 		private GameObject VCListener;
 		private GameObject InGameGUI;
@@ -484,7 +481,7 @@ public class RangerWars: MonoBehaviour
 		public float m_playerSetSpeed = 0.5f;
 		public int m_playerDecal = 0;
 	
-		public string[] m_rankName = new string[13] { "Midshipman", "Ensign", "Lieutenant, JG", "Lieutenant", "LT Commanader", "Commander", "Captain", "Commmodore", "Rear Admiral", "Vice Admiral", "Admiral", "Sector Admiral", "Admiral of the Fleet" };
+		public string[] m_rankName = new string[13] { "Midshipman", "Ensign", "Lieutenant, JG", "Lieutenant", "LT Commander", "Commander", "Captain", "Commodore", "Rear Admiral", "Vice Admiral", "Admiral", "Sector Admiral", "Admiral of the Fleet" };
 	
 		// Player Weapons
 		public bool m_playerLaserFire = false;
@@ -515,7 +512,7 @@ public class RangerWars: MonoBehaviour
 	void Awake()
 	{
 		m_medalAwarded = new int[10];
-		CreateJoystick();
+		//CreateJoystick();
 	}
 	
 	void Start () 
@@ -770,6 +767,9 @@ public class RangerWars: MonoBehaviour
 	
 	private void InitializeGame()
 	{
+		FireButton.SetActive(true);
+		MissileButton.SetActive(true);
+
 		m_missionEnd = false;
 		OnCalibrateAccelerometer();
 		m_playerStartTime = Time.timeSinceLevelLoad;
@@ -809,8 +809,6 @@ public class RangerWars: MonoBehaviour
 		m_activateShield = false;
 		CreateMissionHintsGUI();
 		if(Joystick != null) Joystick.SetActive(true);
-		CreateFireButton();
-		CreateMissileButton();
 		CreateSpeedControl();
 	}
 	
@@ -923,6 +921,8 @@ public class RangerWars: MonoBehaviour
 	{
 		m_onExitGame = false;
 		SetPlayerData();
+		FireButton.SetActive(false);
+		MissileButton.SetActive(false);
 		Destroy(InGameGUI);
 		Destroy (ExitButton);
 		Destroy (MissionReport);
@@ -934,7 +934,7 @@ public class RangerWars: MonoBehaviour
 		if(RetryButton != null) Destroy (RetryButton);
 		if(NextLevelButton != null) Destroy (NextLevelButton);
 		
-		Application.LoadLevel("returnMenu");
+		SceneManager.LoadScene("returnMenu");
 	}
 	
 	#endregion
@@ -3075,27 +3075,27 @@ public class RangerWars: MonoBehaviour
 	
 	private void  GameCenterLoginPlayer ()
 	{
-		GameCenterBinding.authenticateLocalPlayer();
+		//GameCenterBinding.authenticateLocalPlayer();
 	}
 	
 	private void GameCenterGetAchievements()
 	{
-		GameCenterBinding.getAchievements();	
+		//GameCenterBinding.getAchievements();	
 	}
 	
 	private void InitialzeGameCenter()
 	{
-		if(GameCenterBinding.isGameCenterAvailable())
+		/*if(GameCenterBinding.isGameCenterAvailable())
 		{
 			// Initialize GameCenter
 			GameCenterBinding.authenticateLocalPlayer();
 			GameCenterGetData();
-		}
+		}*/
 	}
 	
 	public void GameCenterGetData()
 	{
-		if (GameCenterBinding.isPlayerAuthenticated()) 
+		/*if (GameCenterBinding.isPlayerAuthenticated()) 
 		{
 			GameCenterManager.categoriesLoaded += delegate( List<GameCenterLeaderboard> leaderboards )
 			{
@@ -3111,12 +3111,12 @@ public class RangerWars: MonoBehaviour
 			{
 				this.achievement = achievement;
 			};
-		}
+		}*/
 	}
 	
 	public void GCResetAchievements()
 	{
-		GameCenterBinding.resetAchievements();	
+		//GameCenterBinding.resetAchievements();	
 	}
 	
 	private void CalculateMissionUpgrade()
@@ -3126,7 +3126,7 @@ public class RangerWars: MonoBehaviour
 		
 	public void OnGCAchievements()
 	{
-		if (GameCenterBinding.isPlayerAuthenticated()) 
+		/*if (GameCenterBinding.isPlayerAuthenticated()) 
 		{
 			GameCenterManager.achievementMetadataLoaded += delegate( List<GameCenterAchievementMetadata> achievementMetadata )
 			{
@@ -3138,17 +3138,17 @@ public class RangerWars: MonoBehaviour
 				this.achievement = achievement;
 			};
 			GameCenterBinding.showAchievements();
-		}
+		}*/
 	}
 	
 	public void OnGCLeaderboard()
 	{
-		GameCenterBinding.showLeaderboardWithTimeScopeAndLeaderboard(GameCenterLeaderboardTimeScope.AllTime, "bestDist" );
+		//GameCenterBinding.showLeaderboardWithTimeScopeAndLeaderboard(GameCenterLeaderboardTimeScope.AllTime, "bestDist" );
 	}
 	
 	public void GameCenterReportAchievement(int achievementNr, float percentNr)
 	{
-		switch(achievementNr)
+		/*switch(achievementNr)
 		{
 			case 0:
 				GameCenterBinding.reportAchievement("bigSpender", percentNr);
@@ -3171,14 +3171,14 @@ public class RangerWars: MonoBehaviour
 			case 6:
 				GameCenterBinding.reportAchievement("captain", percentNr);
 			break;
-		}
+		}*/
 	}
 	
 	private void GameCenterReportScore(int scoreType)
 	{
-		switch(scoreType)
-		{
-			case 0: 
+		//switch(scoreType)
+		//{
+			/*case 0: 
 				GameCenterBinding.reportScore(PlayerPrefs.GetInt("BestTime", 0), "bestTime");
 			break;
 			case 1:
@@ -3193,7 +3193,7 @@ public class RangerWars: MonoBehaviour
 			case 4:
 				GameCenterBinding.reportScore(PlayerPrefs.GetInt("PlayerDist", 0), "totalDist");
 			break;
-		}		
+		}*/
 	}
 		
 	#endregion
@@ -3338,30 +3338,6 @@ public class RangerWars: MonoBehaviour
 			Joystick.transform.parent = this.transform;
 			Joystick.transform.localPosition = new Vector3(-185.0f, -280.0f, 0.0f);
 			Joystick.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-		}
-	}
-	
-	private void CreateFireButton()
-	{
-		if(FireButton == null)
-		{
-			FireButton = (GameObject)Instantiate(FireButtonPrefab, Vector3.zero, Quaternion.identity);
-			FireButton.name = "FireButton";
-			FireButton.transform.parent = this.transform;
-			FireButton.transform.localPosition = new Vector3(185.0f, -270.0f, 0.0f);
-			FireButton.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-		}
-	}
-	
-	private void CreateMissileButton()
-	{
-		if(MissileButton == null)
-		{
-			MissileButton = (GameObject)Instantiate(MissileButtonPrefab, Vector3.zero, Quaternion.identity);
-			MissileButton.name = "MissileButton";
-			MissileButton.transform.parent = this.transform;
-			MissileButton.transform.localPosition = new Vector3(185.0f, -270.0f, 0.0f);
-			MissileButton.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
 		}
 	}
 	

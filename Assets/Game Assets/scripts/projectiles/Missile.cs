@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class csMissile : MonoBehaviour {
+public class Missile : MonoBehaviour {
 	private RangerWars grGlobals;
 	
 	public float mslTimer;
@@ -11,7 +11,7 @@ public class csMissile : MonoBehaviour {
 	private bool mslDestroyed = false;
 	public GameObject target = null; 
 
-	// Use this for initializatio
+	// Use this for initialization
 	void Awake()
 	{
 		grGlobals = GameObject.Find("MainGame").GetComponent<RangerWars>();

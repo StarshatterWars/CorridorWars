@@ -15,10 +15,10 @@ public class SpeedSlider : MonoBehaviour {
 		UISlider shipSpeed = this.gameObject.GetComponent<UISlider>(); 	
 		if(grGlobals.m_speedChange)
 		{
-			shipSpeed.sliderValue = grGlobals.m_playerVelocity / grGlobals.m_engineMultiplier;
+			shipSpeed.value = grGlobals.m_playerVelocity / grGlobals.m_engineMultiplier;
 			grGlobals.m_speedChange = false;
 		}
-		grGlobals.m_playerVelocity = shipSpeed.sliderValue  * grGlobals.m_engineMultiplier;
+		grGlobals.m_playerVelocity = shipSpeed.value  * grGlobals.m_engineMultiplier;
 		grGlobals.m_playerSetSpeed = grGlobals.m_playerVelocity;
 	}
 }

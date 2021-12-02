@@ -2,21 +2,13 @@ using UnityEngine;
 using System.Collections;
 
 public class InGameGUI : MonoBehaviour {
-	public GameObject PlayerStatsGUIPrefab;
-	private GameObject PlayerStatsGUI;
 	
 	public GameObject MFDHudGUIPrefab;
 	private GameObject MFDHudGUI;
 	
 	public GameObject ShieldGUIPrefab;
 	private GameObject ShieldGUI;
-	
-	public GameObject GameMusicPrefab;
-	private GameObject GameMusic;
-	
-	public GameObject GameSoundsPrefab;
-	private GameObject GameSounds;
-	
+
 	public GameObject CrosshairPrefab;
 	private GameObject Crosshair;
 	
@@ -45,11 +37,6 @@ public class InGameGUI : MonoBehaviour {
 	
 	private void CreateElements()
 	{
-		PlayerStatsGUI = (GameObject)Instantiate(PlayerStatsGUIPrefab, Vector3.zero, Quaternion.identity);
-		PlayerStatsGUI.name = "PlayerStats";
-		PlayerStatsGUI.transform.parent = this.transform;
-		PlayerStatsGUI.transform.localPosition = new Vector3(156.25f, 0.0f, 0.0f);
-		PlayerStatsGUI.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
 		
 		MFDHudGUI = (GameObject)Instantiate(MFDHudGUIPrefab, Vector3.zero, Quaternion.identity);
 		MFDHudGUI.name = "MFDHudDisplay";
@@ -62,18 +49,6 @@ public class InGameGUI : MonoBehaviour {
 		ShieldGUI.transform.parent = this.transform;
 		ShieldGUI.transform.localPosition = new Vector3(0.0f, -270.0f, 0.0f);
 		ShieldGUI.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-		
-		GameMusic = (GameObject)Instantiate(GameMusicPrefab, Vector3.zero, Quaternion.identity);
-		GameMusic.name = "GameMusic";
-		GameMusic.transform.parent = this.transform;
-		GameMusic.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
-		GameMusic.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-		
-		GameSounds = (GameObject)Instantiate(GameSoundsPrefab, Vector3.zero, Quaternion.identity);
-		GameSounds.name = "GameSounds";
-		GameSounds.transform.parent = this.transform;
-		GameSounds.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
-		GameSounds.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
 		
 		Crosshair = (GameObject)Instantiate(CrosshairPrefab, Vector3.zero, Quaternion.identity);
 		Crosshair.name = "Crosshair";

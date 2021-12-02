@@ -1,11 +1,14 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
-public class csTimer : MonoBehaviour {
+public class Timer : MonoBehaviour {
 	private RangerWars grGlobals;
-	
-	// Use this for initializatio
-	void Awake()
+
+    public Text gameTimer;
+
+    // Use this for initialization
+    void Awake()
 	{
 		grGlobals = GameObject.Find("MainGame").GetComponent<RangerWars>();
 	}
@@ -13,7 +16,6 @@ public class csTimer : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		UILabel gameTimer = this.gameObject.GetComponent<UILabel>();
 		gameTimer.text = DisplayTime(grGlobals.m_playerTime);
 		gameTimer.color = Color.cyan;
 	}
@@ -21,9 +23,8 @@ public class csTimer : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		UILabel gameTimer = this.gameObject.GetComponent<UILabel>();
 		gameTimer.text = DisplayTime(grGlobals.m_playerTime);
-		gameTimer.color = Color.cyan;
+		gameTimer.color = Color.red;
 	}
 	
 	private string DisplayTime(float timeIn)
